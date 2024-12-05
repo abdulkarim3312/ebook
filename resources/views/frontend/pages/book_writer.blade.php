@@ -61,7 +61,7 @@
                 @foreach ($writers as $writer)
                     <div class="col-lg-3">
                         <div class="card card_height shadow">
-                            <a href="{{ route('writer_wise_book', encrypt($writer->slug)) }}">
+                            <a href="{{ route('writer_wise_book', encrypt($writer->id)) }}">
                                 <div class="card-body">
                                     <h5 class="card-title text-center">{{ $writer->name ?? '' }}</h5>
                                 </div>

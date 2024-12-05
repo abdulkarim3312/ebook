@@ -68,10 +68,9 @@ class HomePageController extends Controller
 
         return view('frontend.pages.book_gift_coin', compact('book'));
     }
-    public function bookDownload($id)
+    public function bookDownload($slug)
     {
-        $data = decrypt($id);
-        $book = book::find($data);
+        $book = book::find($slug);
         return view('frontend.pages.book_download', compact('book'));
     }
 
@@ -165,6 +164,13 @@ class HomePageController extends Controller
         return view('frontend.pages.customer_book_page', compact('writers', 'categories'));
     }
     public function booPageView($slug)
+    {
+        $categories = BookCategory::where('status', 1)->get();
+        $bookPage = BookPageContent::where('slug', $slug)->first();
+        $writers = Writer::where('status', 1)->get();
+        return view('frontend.pages.page_view', compact('writers', 'categories','bookPage'));
+    }
+    public function bookPdfDownload($slug)
     {
         $categories = BookCategory::where('status', 1)->get();
         $bookPage = BookPageContent::where('slug', $slug)->first();
