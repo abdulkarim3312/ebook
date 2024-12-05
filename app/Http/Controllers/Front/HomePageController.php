@@ -148,6 +148,9 @@ class HomePageController extends Controller
     public function commentAdd(Request $request, $book_id)
     {
 
+        $request->validate([
+            'comment_text' => 'required'
+        ]);
         $like = new Comment();
         $like->user_id = Session::get('customerId');
         $like->book_id = $book_id;
